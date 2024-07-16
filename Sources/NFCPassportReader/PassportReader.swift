@@ -333,6 +333,9 @@ extension PassportReader {
             DGsToRead = DGsToRead.filter { $0 != .DG3 && $0 != .DG4 }
         }
 
+        // remove reading of DG2 for speed
+        DGsToRead = DGsToRead.filter { $0 != .DG2 }
+
         if self.readAllDatagroups != true {
             DGsToRead = DGsToRead.filter { dataGroupsToRead.contains($0) }
         }
