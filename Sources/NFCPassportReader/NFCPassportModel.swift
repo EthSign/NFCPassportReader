@@ -388,7 +388,7 @@ public class NFCPassportModel {
     func hasCertBeenRevoked( revocationListURL : URL ) -> Bool {
         var revoked = false
         do {
-            try validateAndExtractSigningCertificates( masterListURL: revocationListURL )
+            try validateAndExtractSigningCertificates()
             
             // Certificate chain found - which means certificate is on revocation list
             revoked = true
