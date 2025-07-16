@@ -132,6 +132,16 @@ public class SOD : DataGroup {
         
         return String(digestAlgo.value)
     }
+
+    public func getSignerInfoDigestAlgorithm() throws -> String {
+        guard let signedData = asn1.getChild(1)?.getChild(0),
+            let signerInfo = signedData.getChild(4),
+            let digestAlgo = signerInfo.getChild(0)?.getChild(2)?.getChild(0) else {
+            throw OpenSSLError.UnableToExtractSignedDataFromPKCS7("Data in invalid format")
+        }
+
+        return String(digestAlgo.value)
+    }
     
     /// Gets the signed attributes section (if present)
     /// - Returns: the signed attributes section
